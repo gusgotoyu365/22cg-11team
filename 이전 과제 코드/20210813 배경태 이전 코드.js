@@ -60,6 +60,8 @@ function draw() {
   //커서에 따라 움직이는거
   var cursorSize=50;
   var cursorHeight=100;
+  
+  //비행기 생성
   translate(mouseX+100,mouseY);
   beginShape(WEBGL);
   stroke(255);
