@@ -1,0 +1,16 @@
+Light 종류
+
+pointLight()　https://p5js.org/ko/reference/#/p5/pointLight
+spotLight() https://p5js.org/ko/reference/#/p5/spotLight
+
+Camera 종류
+
+camera()　https://p5js.org/ko/reference/#/p5/camera
+createCamera() https://p5js.org/ko/reference/#/p5/createCamera
+
+Material 종류
+
+https://p5js.org/ko/reference/#/p5/normalMaterial
+https://p5js.org/ko/reference/#/p5/ambientMaterial
+https://p5js.org/ko/reference/#/p5/emissiveMaterial
+https://p5js.org/ko/reference/#/p5/normalMaterial
