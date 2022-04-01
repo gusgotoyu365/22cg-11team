@@ -1,6 +1,6 @@
 Light 종류
 
-pointLight()　https://p5js.org/ko/reference/#/p5/pointLight
+pointLight() https://p5js.org/ko/reference/#/p5/pointLight
 spotLight() https://p5js.org/ko/reference/#/p5/spotLight
 
 Camera 종류
