@@ -37,7 +37,7 @@ function draw() {
     yoff += 0.2;
   }
    
-  //비행기 기울어지는거
+  //배경 색깔 바뀌는거
   if (mouseY<290) background(255/2-mouseY/3,0,0);
   else if (mouseY>=290&&mouseY<=310) background(0,0,0);
   else background(0,0,mouseY/3-255/4);
@@ -61,7 +61,7 @@ function draw() {
   var cursorSize=50;
   var cursorHeight=100;
   
-  //비행기 생성
+  //비행기 생성, 도형이 기울어지게
   translate(mouseX+100,mouseY);
   beginShape(WEBGL);
   stroke(255);
