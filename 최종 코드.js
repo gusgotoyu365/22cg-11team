@@ -125,6 +125,8 @@ function draw() {
     camera(606,81,644,0,16,-28);
   } else if (cameraNum == 2) {
     camera(-6,-94,567,-6,-334,0);
+  } else if (cameraNum == 3) {
+    camera(250,-875,-875,0,0,0);
   }
 }
 
@@ -139,12 +141,12 @@ function keyPressed() {
   //좌우 방향키를 누름에 따라 카메라가 달라짐
   if (keyCode === LEFT_ARROW) {
     if (cameraNum == 0) {
-      cameraNum = 2;
+      cameraNum = 3;
     } else {
       cameraNum = cameraNum - 1;
     }
   } else if (keyCode === RIGHT_ARROW) {
-    if (cameraNum == 2) {
+    if (cameraNum == 3) {
       cameraNum = 0;
     } else {
       cameraNum = cameraNum + 1;
