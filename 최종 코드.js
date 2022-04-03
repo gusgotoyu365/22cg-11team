@@ -106,12 +106,14 @@ function draw() {
   if (mouseY<=300) { //중간을 기준으로 위쪽에 있을때부터 달 생성
     translate(0,-275,-50);
     noStroke();
+    translate(0,0,-1);
     ellipse(0,20,80,80);
     if (mouseY<310) {
       fill(60-mouseY/12,0,100-mouseY);
     } else {
       fill(0,0,mouseY/3-255);
     }
+    translate(0,0,1);
     ellipse(slider.value()/4,20,80,80);
   }
   pop();
