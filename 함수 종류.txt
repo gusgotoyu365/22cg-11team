@@ -13,4 +13,4 @@ Material Á¾·ù
 normalMaterial() https://p5js.org/ko/reference/#/p5/normalMaterial
 ambientMaterial() https://p5js.org/ko/reference/#/p5/ambientMaterial
 emissiveMaterial() https://p5js.org/ko/reference/#/p5/emissiveMaterial
-normalMaterial() https://p5js.org/ko/reference/#/p5/normalMaterial
+specularMaterial() https://p5js.org/ko/reference/#/p5/specularMaterial
