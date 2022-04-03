@@ -6,6 +6,7 @@ let h = 1000;
 let flying = 0;
 let flySpeed = 0.1;
 let flightState = 1;
+let cameraNum = 0;
 
 let terrain = [];
 let slider;
@@ -114,14 +115,38 @@ function draw() {
     ellipse(slider.value()/4,20,80,80);
   }
   pop();
+
+  //카메라 시점 바꾸기
+  if (cameraNum == 0) {
+    camera(0,0,536,0,0,0);
+  } else if (cameraNum == 1) {
+    camera(606,81,644,0,16,-28);
+  } else if (cameraNum == 2) {
+    camera(-6,-94,567,-6,-334,0);
+  }
 }
 
 function keyPressed() {
-  //방향키를 누름에 따라 속도가 달라짐
+  //상하 방향키를 누름에 따라 속도가 달라짐
   if (keyCode === UP_ARROW) {
     flySpeed += 0.05;
   } else if (keyCode === DOWN_ARROW) {
     flySpeed -= 0.05;
+  }
+
+  //좌우 방향키를 누름에 따라 카메라가 달라짐
+  if (keyCode === LEFT_ARROW) {
+    if (cameraNum == 0) {
+      cameraNum = 2;
+    } else {
+      cameraNum = cameraNum - 1;
+    }
+  } else if (keyCode === RIGHT_ARROW) {
+    if (cameraNum == 2) {
+      cameraNum = 0;
+    } else {
+      cameraNum = cameraNum + 1;
+    }
   }
 }
 
