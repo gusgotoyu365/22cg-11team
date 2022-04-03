@@ -1,13 +1,15 @@
-var cols, rows;
-var scl = 20;
-var w = 1400;
-var h = 1000;
+let cols, rows;
+let scl = 20;
+let w = 1400;
+let h = 1000;
 
-var flying = 0;
-var flySpeed = 0.1;
+let flying = 0;
+let flySpeed = 0.1;
+let flightState = 1;
 
-var terrain = [];
-var slider;
+let terrain = [];
+let slider;
+
 function setup() {
   createCanvas(600, 600, WEBGL);
   cols = w / scl;
@@ -31,19 +33,22 @@ function draw() {
   stroke(0);
   normalMaterial();
   flying -= flySpeed;
-  var yoff = flying;
-  for (var y = 0; y < rows; y++) {
+  let yoff = flying;
+  for (let y = 0; y < rows; y++) {
     var xoff = 0;
-    for (var x = 0; x < cols; x++) {
+    for (let x = 0; x < cols; x++) {
       terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
       xoff += 0.2;
     }
     yoff += 0.2;
   }
    
-  //하늘색
-  if (mouseY<310) background(60-mouseY/12,0,100-mouseY); 
-  else background(0,0,mouseY/3-255);
+  //하늘 색
+  if (mouseY<310) {
+    background(60-mouseY/12,0,100-mouseY); 
+  } else {
+    background(0,0,mouseY/3-255);
+  }
   
   translate(0, 50);
   rotateX(PI / 3);
@@ -66,23 +71,15 @@ function draw() {
     endShape();
   }
   
-  //커서에 따라 움직이는거
-  var cursorSize=50;
-  var cursorHeight=100;
-  translate(mouseX+100,mouseY,20);
-  beginShape();
-  stroke(255);
-  strokeWeight(cursorSize/10);
+  let cursorSize=50;
+  let cursorHeight=100;
+  translate(mouseX+100,mouseY,20); //커서에 따라 움직이는거
   fill(255);
-  vertex(mouseX,mouseY-cursorSize,cursorHeight);
-  if (mouseX>310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight+(mouseX-300)/2);
-  else if (mouseX>=290 && mouseX <=310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight);
-  else vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight-(300-mouseX)/2);
-  vertex(mouseX,mouseY+cursorSize/2,cursorHeight);
-  if (mouseX<290) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
-  else if (mouseX>=290 && mouseX<=310) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight);
-  else vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
-  endShape(CLOSE);
+  if (flightState == 1) { //키가 1 or 2이면 모양 바꾸기
+    flight1(cursorSize, cursorHeight);
+  } else if (flightState == 2) {
+    flight2(cursorSize, cursorHeight);
+  }  
   pop();
   
   //하늘에 별 생성
@@ -97,22 +94,24 @@ function draw() {
   
   //달, slider를 이용하여 달 모양 바꾸기
   push();
-  if (mouseY<=50){
+  if (mouseY<=50){ //달이 너무 높으면 위치 고정
     translate(0,-50,-50);
     fill(255-mouseY/4,255-mouseY/4,0);
-  } else if (mouseY<=300){
+  } else if (mouseY<=300){ //달이 마우스 좌표에 따라 움직임
     translate(0,mouseY/2-75,-50);
     fill(255-mouseY/4,255-mouseY/4,0);   
   }
   
-  if (mouseY<=300) {
-  translate(0,-275,-50);
-  noStroke();
-  
-  ellipse(0,20,80,80);
-  if (mouseY<310) fill(60-mouseY/12,0,100-mouseY); 
-  else fill(0,0,mouseY/3-255);
-  ellipse(slider.value()/4,20,80,80);
+  if (mouseY<=300) { //중간을 기준으로 위쪽에 있을때부터 달 생성
+    translate(0,-275,-50);
+    noStroke();
+    ellipse(0,20,80,80);
+    if (mouseY<310) {
+      fill(60-mouseY/12,0,100-mouseY);
+    } else {
+      fill(0,0,mouseY/3-255);
+    }
+    ellipse(slider.value()/4,20,80,80);
   }
   pop();
 }
@@ -126,7 +125,15 @@ function keyPressed() {
   }
 }
 
-function star() {
+function keyTyped() {
+  if (key === '1') {
+    flightState = 1;
+  } else if (key === '2') {
+    flightState = 2;
+  }
+}
+
+function star() { //별 생성 함수
   push();
   noStroke();
   rotate(frameCount/10+(mouseY-pmouseY)/10);
@@ -142,4 +149,33 @@ function star() {
   scale(0.5);
   endShape();
   pop();
+}
+
+function flight1(cursorSize, cursorHeight) {
+  beginShape();
+  stroke(255);
+  strokeWeight(cursorSize/20);
+  vertex(mouseX,mouseY-cursorSize,cursorHeight);
+  if (mouseX>310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight+(mouseX-300)/2);
+  else if (mouseX>=290 && mouseX <=310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight);
+  else vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight-(300-mouseX)/2);
+  vertex(mouseX,mouseY+cursorSize/2,cursorHeight);
+  if (mouseX<290) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
+  else if (mouseX>=290 && mouseX<=310) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight);
+  else vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
+  endShape(CLOSE);
+}
+
+function flight2(cursorSize, cursorHeight) {
+  beginShape();
+  stroke(255);
+  strokeWeight(cursorSize/20);
+  vertex(mouseX,mouseY-cursorSize,cursorHeight);
+  if (mouseX>310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight+(mouseX-300)/2);
+  else if (mouseX>=290 && mouseX <=310) vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight);
+  else vertex(mouseX+cursorSize,mouseY+cursorSize,cursorHeight-(300-mouseX)/2);
+  if (mouseX<290) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
+  else if (mouseX>=290 && mouseX<=310) vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight);
+  else vertex(mouseX-cursorSize,mouseY+cursorSize,cursorHeight-(mouseX-300)/2);
+  endShape(CLOSE);
 }
