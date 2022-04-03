@@ -1,16 +1,16 @@
-Light Á¾·ù
+Light ÃÂ¾Â·Ã¹
 
 pointLight() https://p5js.org/ko/reference/#/p5/pointLight
 spotLight() https://p5js.org/ko/reference/#/p5/spotLight
 
-Camera Á¾·ù
+Camera ÃÂ¾Â·Ã¹
 
-camera()¡¡https://p5js.org/ko/reference/#/p5/camera
+camera()Â¡Â¡https://p5js.org/ko/reference/#/p5/camera
 createCamera() https://p5js.org/ko/reference/#/p5/createCamera
 
-Material Á¾·ù
+Material ÃÂ¾Â·Ã¹
 
-https://p5js.org/ko/reference/#/p5/normalMaterial
-https://p5js.org/ko/reference/#/p5/ambientMaterial
-https://p5js.org/ko/reference/#/p5/emissiveMaterial
-https://p5js.org/ko/reference/#/p5/normalMaterial
+normalMaterial() https://p5js.org/ko/reference/#/p5/normalMaterial
+ambientMaterial() https://p5js.org/ko/reference/#/p5/ambientMaterial
+emissiveMaterial() https://p5js.org/ko/reference/#/p5/emissiveMaterial
+normalMaterial() https://p5js.org/ko/reference/#/p5/normalMaterial
